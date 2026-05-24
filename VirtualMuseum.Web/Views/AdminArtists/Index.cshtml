@@ -1,0 +1,55 @@
+@model IEnumerable<VirtualMuseum.Web.Models.Artist>
+
+@{
+    ViewData["Title"] = "Manage Artists";
+}
+
+<h1>Manage Artists</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<p>
+    <a asp-controller="AdminArtists" asp-action="Create" class="btn btn-primary">Add New Artist</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Birth Date</th>
+            <th>Death Date</th>
+            <th>Nationality</th>
+            <th style="width: 220px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var artist in Model)
+        {
+            <tr>
+                <td>@artist.Name</td>
+                <td>@artist.Surname</td>
+                <td>@artist.BirthDate</td>
+                <td>@artist.DeathDate</td>
+                <td>@artist.Nationality</td>
+                <td>
+                    <a asp-controller="AdminArtists" asp-action="Edit" asp-route-id="@artist.ArtistId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-controller="AdminArtists" asp-action="Delete" asp-route-id="@artist.ArtistId" class="btn btn-sm btn-danger">Delete</a>
+                    <a asp-action="ManageMovements" asp-route-id="@artist.ArtistId" class="btn btn-sm btn-info text-white">Manage Movements</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
