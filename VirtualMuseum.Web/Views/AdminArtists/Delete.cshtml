@@ -1,0 +1,59 @@
+@model VirtualMuseum.Web.Models.ViewModels.ArtistDeleteViewModel
+
+@{
+    ViewData["Title"] = "Delete Artist";
+}
+
+<h1>Delete Artist</h1>
+
+<div class="alert alert-danger">
+    <strong>Warning:</strong> If you delete this artist, all artworks and related records connected to this artist will also be deleted.
+</div>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>Surname</th>
+        <td>@Model.Surname</td>
+    </tr>
+    <tr>
+        <th>Birth Date</th>
+        <td>@Model.BirthDate</td>
+    </tr>
+    <tr>
+        <th>Death Date</th>
+        <td>@Model.DeathDate</td>
+    </tr>
+    <tr>
+        <th>Nationality</th>
+        <td>@Model.Nationality</td>
+    </tr>
+</table>
+
+<h4>Related data that will also be deleted</h4>
+
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>Related Record Type</th>
+        <th>Count</th>
+    </tr>
+    <tr>
+        <th>Linked Artworks</th>
+        <td>@Model.LinkedArtworkCount</td>
+    </tr>
+    <tr>
+        <th>Linked Movements</th>
+        <td>@Model.LinkedMovementCount</td>
+    </tr>
+</table>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ArtistId" />
+    <button type="submit" class="btn btn-danger">
+        Yes, Delete Artist and Related Records
+    </button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
