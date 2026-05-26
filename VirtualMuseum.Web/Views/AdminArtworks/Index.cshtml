@@ -1,0 +1,53 @@
+@model IEnumerable<VirtualMuseum.Web.Models.Artwork>
+
+@{
+    ViewData["Title"] = "Manage Artworks";
+}
+
+<h1>Manage Artworks</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<p>
+    <a asp-controller="AdminArtworks" asp-action="Create" class="btn btn-primary">Add New Artwork</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Creation Year</th>
+            <th>Type</th>
+            <th>Theme</th>
+            <th>Artist</th>
+            <th style="width: 260px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var artwork in Model)
+        {
+            <tr>
+                <td>@artwork.Title</td>
+                <td>@artwork.CreationYear</td>
+                <td>@artwork.ArtworkType</td>
+                <td>@artwork.Theme</td>
+                <td>
+                    @(artwork.Artist != null ? artwork.Artist.Name + " " + artwork.Artist.Surname : "Unknown")
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@artwork.ArtworkId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@artwork.ArtworkId" class="btn btn-sm btn-danger">Delete</a>
+                    <a asp-action="ManageMovements" asp-route-id="@artwork.ArtworkId" class="btn btn-sm btn-info text-white">Manage Movements</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
