@@ -1,0 +1,44 @@
+@model VirtualMuseum.Web.Models.ViewModels.ArtMovementDeleteViewModel
+
+@{
+    ViewData["Title"] = "Delete Art Movement";
+}
+
+<h1>Delete Art Movement</h1>
+
+<div class="alert alert-danger">
+    <strong>Warning:</strong> If you delete this movement, all linked artist and artwork movement relations will also be removed.
+</div>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <td>@Model.MovementName</td>
+    </tr>
+    <tr>
+        <th>Region of Origin</th>
+        <td>@Model.RegionOfOrigin</td>
+    </tr>
+    <tr>
+        <th>Era</th>
+        <td>@Model.Era</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>@Model.Description</td>
+    </tr>
+    <tr>
+        <th>Linked Artists</th>
+        <td>@Model.LinkedArtistCount</td>
+    </tr>
+    <tr>
+        <th>Linked Artworks</th>
+        <td>@Model.LinkedArtworkCount</td>
+    </tr>
+</table>
+
+<form asp-action="Delete" method="post">
+    <input asp-for="MovementId" type="hidden" />
+    <button type="submit" class="btn btn-danger">Yes, Delete Movement</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
