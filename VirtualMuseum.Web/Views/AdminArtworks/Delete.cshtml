@@ -1,0 +1,32 @@
+@model VirtualMuseum.Web.Models.ViewModels.ArtworkDeleteViewModel
+
+@{
+    ViewData["Title"] = "Delete Artwork";
+}
+
+<h1>Delete Artwork</h1>
+
+<div class="alert alert-danger">
+    <strong>Warning:</strong> If you delete this artwork, related image records and relation records will also be deleted.
+</div>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Title</th>
+        <td>@Model.Title</td>
+    </tr>
+    <tr>
+        <th>Artist</th>
+        <td>@Model.ArtistFullName</td>
+    </tr>
+    <tr>
+        <th>Image Count</th>
+        <td>@Model.ImageCount</td>
+    </tr>
+</table>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ArtworkId" />
+    <button type="submit" class="btn btn-danger">Yes, Delete Artwork</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
