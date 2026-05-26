@@ -1,0 +1,44 @@
+@model VirtualMuseum.Web.Models.ViewModels.ArtMovementFormViewModel
+
+@{
+    ViewData["Title"] = "Create Art Movement";
+}
+
+<h1>Create Art Movement</h1>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="MovementName" class="form-label"></label>
+        <input asp-for="MovementName" class="form-control" />
+        <span asp-validation-for="MovementName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="RegionOfOrigin" class="form-label"></label>
+        <input asp-for="RegionOfOrigin" class="form-control" />
+        <span asp-validation-for="RegionOfOrigin" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Era" class="form-label"></label>
+        <input asp-for="Era" class="form-control" />
+        <span asp-validation-for="Era" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
