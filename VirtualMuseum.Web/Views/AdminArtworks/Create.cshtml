@@ -1,0 +1,94 @@
+@model VirtualMuseum.Web.Models.ViewModels.ArtworkFormViewModel
+
+@{
+    ViewData["Title"] = "Create Artwork";
+}
+
+<h1>Create Artwork</h1>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CreationYear" class="form-label"></label>
+        <input asp-for="CreationYear" class="form-control" />
+        <span asp-validation-for="CreationYear" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ArtworkType" class="form-label"></label>
+        <input asp-for="ArtworkType" class="form-control" />
+        <span asp-validation-for="ArtworkType" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Theme" class="form-label"></label>
+        <input asp-for="Theme" class="form-control" />
+        <span asp-validation-for="Theme" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Technique" class="form-label"></label>
+        <input asp-for="Technique" class="form-control" />
+        <span asp-validation-for="Technique" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Medium" class="form-label"></label>
+        <input asp-for="Medium" class="form-control" />
+        <span asp-validation-for="Medium" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Dimensions" class="form-label"></label>
+        <input asp-for="Dimensions" class="form-control" />
+        <span asp-validation-for="Dimensions" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="AcquisitionDate" class="form-label"></label>
+        <input asp-for="AcquisitionDate" type="date" class="form-control" />
+        <span asp-validation-for="AcquisitionDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ArtistId" class="form-label">Artist</label>
+        <select asp-for="ArtistId" asp-items="ViewBag.Artists" class="form-select">
+            <option value="">-- Select Artist --</option>
+        </select>
+        <span asp-validation-for="ArtistId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ImagePathsText" class="form-label">Manual Image Paths (Optional)</label>
+        <textarea asp-for="ImagePathsText" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="ImagePathsText" class="text-danger"></span>
+        <div class="form-text">
+            Optional. One image path per line.
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="UploadedImages" class="form-label">Upload Images</label>
+        <input asp-for="UploadedImages" type="file" class="form-control" multiple accept=".jpg,.jpeg,.png,.webp" />
+        <span asp-validation-for="UploadedImages" class="text-danger"></span>
+        <div class="form-text">
+            You can select one or more image files. The first uploaded image becomes main image, the others become detail images.
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
