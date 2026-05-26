@@ -1,0 +1,48 @@
+@model IEnumerable<VirtualMuseum.Web.Models.ArtMovement>
+
+@{
+    ViewData["Title"] = "Manage Art Movements";
+}
+
+<h1>Manage Art Movements</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<p>
+    <a asp-controller="AdminArtMovements" asp-action="Create" class="btn btn-primary">Add New Movement</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Region of Origin</th>
+            <th>Era</th>
+            <th>Description</th>
+            <th style="width: 220px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movement in Model)
+        {
+            <tr>
+                <td>@movement.MovementName</td>
+                <td>@movement.RegionOfOrigin</td>
+                <td>@movement.Era</td>
+                <td>@movement.Description</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@movement.MovementId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@movement.MovementId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
