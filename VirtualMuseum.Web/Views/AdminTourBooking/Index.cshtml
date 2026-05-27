@@ -1,0 +1,42 @@
+@model IEnumerable<VirtualMuseum.Web.Models.ViewModels.AdminTourBookingItemViewModel>
+
+@{
+    ViewData["Title"] = "Tour Booking Management";
+}
+
+<h1>Tour Booking Management</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Visitor</th>
+            <th>Tour</th>
+            <th>Exhibition</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th style="width: 160px;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.VisitorName</td>
+                <td>@item.TourTitle</td>
+                <td>@item.ExhibitionTitle</td>
+                <td>@item.TourDate</td>
+                <td>@item.TimeRange</td>
+                <td>@item.Status</td>
+                <td>
+                    <a asp-action="EditStatus" asp-route-bookingId="@item.BookingId" class="btn btn-sm btn-warning">Edit Status</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
