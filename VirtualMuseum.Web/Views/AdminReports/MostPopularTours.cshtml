@@ -1,0 +1,61 @@
+@model List<VirtualMuseum.Web.Models.ViewModels.Reports.MostPopularToursRowViewModel>
+
+@{
+    ViewData["Title"] = "Most Popular Tours";
+}
+
+<div class="container mt-4">
+    <h1>Most Popular Tours</h1>
+    <p class="text-muted">
+        This report shows guided tours together with booking statistics, including active bookings, cancelled bookings, and remaining capacity.
+    </p>
+    <div class="mb-3 d-flex gap-2">
+        <a asp-controller="AdminReports" asp-action="Index" class="btn btn-secondary">Back to Reports</a>
+        <a asp-controller="AdminReports" asp-action="ExportMostPopularToursHtml" class="btn btn-success">
+            Export HTML
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Tour ID</th>
+                    <th>Tour Title</th>
+                    <th>Exhibition Title</th>
+                    <th>Tour Date</th>
+                    <th>Capacity</th>
+                    <th>Total Bookings</th>
+                    <th>Active Bookings</th>
+                    <th>Cancelled Bookings</th>
+                    <th>Remaining Capacity</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var row in Model)
+                    {
+                        <tr>
+                            <td>@row.TourId</td>
+                            <td>@row.TourTitle</td>
+                            <td>@row.ExhibitionTitle</td>
+                            <td>@row.TourDate.ToString("yyyy-MM-dd")</td>
+                            <td>@row.Capacity</td>
+                            <td>@row.TotalBookings</td>
+                            <td>@row.ActiveBookings</td>
+                            <td>@row.CancelledBookings</td>
+                            <td>@row.RemainingCapacity</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="9" class="text-center text-muted">No data found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div> 
