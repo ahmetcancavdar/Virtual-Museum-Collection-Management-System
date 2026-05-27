@@ -1,0 +1,36 @@
+@model VirtualMuseum.Web.Models.ViewModels.AdminTourBookingStatusEditViewModel
+
+@{
+    ViewData["Title"] = "Edit Tour Booking Status";
+    var statusOptions = ViewBag.StatusOptions as List<string> ?? new List<string>();
+}
+
+<h1>Edit Tour Booking Status</h1>
+
+<form asp-action="EditStatus" method="post">
+    <input asp-for="BookingId" type="hidden" />
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <table class="table table-bordered">
+        <tr><th>Visitor</th><td>@Model.VisitorName</td></tr>
+        <tr><th>Tour</th><td>@Model.TourTitle</td></tr>
+        <tr><th>Exhibition</th><td>@Model.ExhibitionTitle</td></tr>
+        <tr><th>Date</th><td>@Model.TourDate</td></tr>
+        <tr><th>Time</th><td>@Model.TimeRange</td></tr>
+    </table>
+
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label"></label>
+        <select asp-for="Status" class="form-select">
+            @foreach (var status in statusOptions)
+            {
+                <option value="@status">@status</option>
+            }
+        </select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Status</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>
