@@ -1,0 +1,56 @@
+@model IEnumerable<VirtualMuseum.Web.Models.Exhibition>
+
+@{
+    ViewData["Title"] = "Manage Exhibitions";
+}
+
+<h1>Manage Exhibitions</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<p>
+    <a asp-controller="AdminExhibitions" asp-action="Create" class="btn btn-primary">Add New Exhibition</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Theme</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Room</th>
+            <th>Active</th>
+            <th style="width: 220px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var exhibition in Model)
+        {
+            <tr>
+                <td>@exhibition.Title</td>
+                <td>@exhibition.Theme</td>
+                <td>@exhibition.StartDate</td>
+                <td>@exhibition.EndDate</td>
+                <td>@exhibition.RoomName (@exhibition.RoomId)</td>
+                <td>@(exhibition.IsActive ? "Yes" : "No")</td>
+                <td>
+                    <a asp-controller="AdminExhibitions" asp-action="Edit" asp-route-id="@exhibition.ExhibitionId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-controller="AdminExhibitions" asp-action="Delete" asp-route-id="@exhibition.ExhibitionId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
