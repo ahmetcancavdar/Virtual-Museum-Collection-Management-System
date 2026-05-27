@@ -1,0 +1,52 @@
+@model List<VirtualMuseum.Web.Models.ViewModels.Reports.MostRepresentedArtMovementRowViewModel>
+
+@{
+    ViewData["Title"] = "Most Represented Art Movements";
+}
+
+<div class="container mt-4">
+    <h1>Most Represented Art Movements</h1>
+    <p class="text-muted">
+        This report shows how strongly each art movement is represented in the museum collection.
+    </p>
+
+    <div class="mb-3 d-flex gap-2">
+        <a asp-controller="AdminReports" asp-action="Index" class="btn btn-secondary">Back to Reports</a>
+        <a asp-controller="AdminReports" asp-action="ExportMostRepresentedArtMovementsHtml" class="btn btn-success">
+            Export HTML
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Movement ID</th>
+                    <th>Movement Name</th>
+                    <th>Era</th>
+                    <th>Artwork Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var row in Model)
+                    {
+                        <tr>
+                            <td>@row.MovementId</td>
+                            <td>@row.MovementName</td>
+                            <td>@row.Era</td>
+                            <td>@row.ArtworkCount</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">No data found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
