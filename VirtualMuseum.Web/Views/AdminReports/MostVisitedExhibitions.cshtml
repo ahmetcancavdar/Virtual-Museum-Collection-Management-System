@@ -1,0 +1,56 @@
+@model List<VirtualMuseum.Web.Models.ViewModels.Reports.MostVisitedExhibitionsRowViewModel>
+
+@{
+    ViewData["Title"] = "Most Visited Exhibitions";
+}
+
+<div class="container mt-4">
+    <h1>Most Visited Exhibitions</h1>
+    <p class="text-muted">
+        This report shows exhibitions together with visit statistics and visit status distribution.
+    </p>
+
+    <div class="mb-3 d-flex gap-2">
+        <a asp-controller="AdminReports" asp-action="Index" class="btn btn-secondary">Back to Reports</a>
+        <a asp-controller="AdminReports" asp-action="ExportMostVisitedExhibitionsHtml" class="btn btn-success">
+            Export HTML
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Exhibition ID</th>
+                    <th>Exhibition Title</th>
+                    <th>Total Visits</th>
+                    <th>Planned Visits</th>
+                    <th>Completed Visits</th>
+                    <th>Cancelled Visits</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var row in Model)
+                    {
+                        <tr>
+                            <td>@row.ExhibitionId</td>
+                            <td>@row.ExhibitionTitle</td>
+                            <td>@row.TotalVisits</td>
+                            <td>@row.PlannedVisits</td>
+                            <td>@row.CompletedVisits</td>
+                            <td>@row.CancelledVisits</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">No data found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
