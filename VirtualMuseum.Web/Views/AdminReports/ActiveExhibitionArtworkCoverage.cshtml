@@ -1,0 +1,62 @@
+@model List<VirtualMuseum.Web.Models.ViewModels.Reports.ActiveExhibitionArtworkCoverageRowViewModel>
+
+@{
+    ViewData["Title"] = "Active Exhibition Artwork Coverage";
+}
+
+<div class="container mt-4">
+    <h1>Active Exhibition Artwork Coverage</h1>
+    <p class="text-muted">
+        This report lists all artworks currently displayed in active exhibitions together with exhibition and room information.
+    </p>
+
+    <div class="mb-3 d-flex gap-2">
+        <a asp-controller="AdminReports" asp-action="Index" class="btn btn-secondary">Back to Reports</a>
+        <a asp-controller="AdminReports" asp-action="ExportActiveExhibitionArtworkCoverageHtml" class="btn btn-success">
+            Export HTML
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Exhibition ID</th>
+                    <th>Exhibition Title</th>
+                    <th>Room ID</th>
+                    <th>Room Name</th>
+                    <th>Artwork ID</th>
+                    <th>Artwork Title</th>
+                    <th>Artwork Type</th>
+                    <th>Theme</th>
+                    <th>Artist Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var row in Model)
+                    {
+                        <tr>
+                            <td>@row.ExhibitionId</td>
+                            <td>@row.ExhibitionTitle</td>
+                            <td>@row.RoomId</td>
+                            <td>@row.RoomName</td>
+                            <td>@row.ArtworkId</td>
+                            <td>@row.ArtworkTitle</td>
+                            <td>@row.ArtworkType</td>
+                            <td>@row.Theme</td>
+                            <td>@row.ArtistName</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="9" class="text-center text-muted">No data found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
