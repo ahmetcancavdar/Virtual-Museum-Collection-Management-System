@@ -1,0 +1,84 @@
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Advanced Reports & Analytics</h1>
+    <p class="text-muted">
+        This page provides access to predefined advanced SQL-based reports for analytics and reporting.
+    </p>
+
+    <div class="row g-3 mt-2">
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Active Exhibition Artwork Coverage</h5>
+                    <p class="card-text">View artworks currently displayed in active exhibitions.</p>
+                    <a asp-controller="AdminReports" asp-action="ActiveExhibitionArtworkCoverage" class="btn btn-primary">
+                        Open Report
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Most Represented Art Movements</h5>
+                    <p class="card-text">See which art movements are most represented in the collection.</p>
+                    <a asp-controller="AdminReports" asp-action="MostRepresentedArtMovements" class="btn btn-primary">
+                        Open Report
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Virtual Tour Stop Sequence</h5>
+                    <p class="card-text">Display the ordered stop sequence of each virtual tour plan.</p>
+                    <a asp-controller="AdminReports" asp-action="VirtualTourStopSequence" class="btn btn-primary">
+                        Open Report
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Era Representation in Active Exhibitions</h5>
+                    <p class="card-text">Analyze which historical eras are represented in active exhibitions.</p>
+                    <a asp-controller="AdminReports" asp-action="EraRepresentationInActiveExhibitions" class="btn btn-primary">
+                        Open Report
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Most Popular Tours</h5>
+                    <p class="card-text">Compare guided tours by booking activity and remaining capacity.</p>
+                    <a asp-controller="AdminReports" asp-action="MostPopularTours" class="btn btn-primary">
+                        Open Report
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Most Visited Exhibitions</h5>
+                    <p class="card-text">Compare exhibitions by total visits and visit status distribution.</p>
+                    <a asp-controller="AdminReports" asp-action="MostVisitedExhibitions" class="btn btn-primary">
+                        Open Report
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
