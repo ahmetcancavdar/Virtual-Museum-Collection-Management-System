@@ -1,0 +1,48 @@
+@model List<VirtualMuseum.Web.Models.ViewModels.Reports.EraRepresentationInActiveExhibitionsRowViewModel>
+
+@{
+    ViewData["Title"] = "Era Representation in Active Exhibitions";
+}
+
+<div class="container mt-4">
+    <h1>Era Representation in Active Exhibitions</h1>
+    <p class="text-muted">
+        This report shows which historical eras are represented in active exhibitions and how many artworks belong to each era.
+    </p>
+
+    <div class="mb-3 d-flex gap-2">
+        <a asp-controller="AdminReports" asp-action="Index" class="btn btn-secondary">Back to Reports</a>
+        <a asp-controller="AdminReports" asp-action="ExportEraRepresentationInActiveExhibitionsHtml" class="btn btn-success">
+            Export HTML
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Era</th>
+                    <th>Artwork Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var row in Model)
+                    {
+                        <tr>
+                            <td>@row.Era</td>
+                            <td>@row.ArtworkCount</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="2" class="text-center text-muted">No data found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
