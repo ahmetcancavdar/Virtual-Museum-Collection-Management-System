@@ -1,0 +1,84 @@
+@model VirtualMuseum.Web.Models.ViewModels.TourFormViewModel
+
+@{
+    ViewData["Title"] = "Create Tour";
+}
+
+<h1>Create Tour</h1>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="ExhibitionId" class="form-label">Exhibition</label>
+        <select asp-for="ExhibitionId" asp-items="ViewBag.Exhibitions" class="form-select">
+            <option value="">-- Select Exhibition --</option>
+        </select>
+        <span asp-validation-for="ExhibitionId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="TourDate" class="form-label"></label>
+            <input asp-for="TourDate" type="date" class="form-control" />
+            <span asp-validation-for="TourDate" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label asp-for="StartTime" class="form-label"></label>
+            <input asp-for="StartTime" type="time" class="form-control" />
+            <span asp-validation-for="StartTime" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label asp-for="EndTime" class="form-label"></label>
+            <input asp-for="EndTime" type="time" class="form-control" />
+            <span asp-validation-for="EndTime" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="Capacity" class="form-label"></label>
+            <input asp-for="Capacity" class="form-control" />
+            <span asp-validation-for="Capacity" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label asp-for="Language" class="form-label"></label>
+            <input asp-for="Language" class="form-control" />
+            <span asp-validation-for="Language" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label asp-for="Status" class="form-label"></label>
+            <select asp-for="Status" asp-items="ViewBag.Statuses" class="form-select"></select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="GuideUserId" class="form-label">Guide</label>
+        <select asp-for="GuideUserId" asp-items="ViewBag.Guides" class="form-select">
+            <option value="">-- Select Guide --</option>
+        </select>
+        <span asp-validation-for="GuideUserId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
