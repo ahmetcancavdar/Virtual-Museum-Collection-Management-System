@@ -1,0 +1,52 @@
+@model VirtualMuseum.Web.Models.ViewModels.VirtualTourPlanFormViewModel
+
+@{
+    ViewData["Title"] = "Edit Virtual Tour Plan";
+}
+
+<h1>Edit Virtual Tour Plan</h1>
+
+<form asp-action="Edit" method="post">
+    <input asp-for="PlanId" type="hidden" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="ExhibitionId" class="form-label">Exhibition</label>
+        <select asp-for="ExhibitionId" asp-items="ViewBag.Exhibitions" class="form-select">
+            <option value="">-- Select Exhibition --</option>
+        </select>
+        <span asp-validation-for="ExhibitionId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EstimatedDurationMinutes" class="form-label"></label>
+        <input asp-for="EstimatedDurationMinutes" class="form-control" />
+        <span asp-validation-for="EstimatedDurationMinutes" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="IsActive" class="form-check-input" />
+        <label asp-for="IsActive" class="form-check-label"></label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
