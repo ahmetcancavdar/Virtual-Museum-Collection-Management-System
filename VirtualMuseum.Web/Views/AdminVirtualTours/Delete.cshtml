@@ -1,0 +1,25 @@
+@model VirtualMuseum.Web.Models.ViewModels.VirtualTourPlanDeleteViewModel
+
+@{
+    ViewData["Title"] = "Delete Virtual Tour Plan";
+}
+
+<h1>Delete Virtual Tour Plan</h1>
+
+<div class="alert alert-danger">
+    <strong>Warning:</strong> If you delete this virtual tour plan, all route stops will also be deleted.
+</div>
+
+<table class="table table-bordered">
+    <tr><th>Exhibition</th><td>@Model.ExhibitionTitle</td></tr>
+    <tr><th>Plan Title</th><td>@Model.Title</td></tr>
+    <tr><th>Duration</th><td>@Model.EstimatedDurationMinutes min</td></tr>
+    <tr><th>Active</th><td>@(Model.IsActive ? "Yes" : "No")</td></tr>
+    <tr><th>Stop Count</th><td>@Model.StopCount</td></tr>
+</table>
+
+<form asp-action="Delete" method="post">
+    <input asp-for="PlanId" type="hidden" />
+    <button type="submit" class="btn btn-danger">Yes, Delete Plan</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
