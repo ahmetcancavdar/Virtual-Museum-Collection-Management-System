@@ -1,0 +1,51 @@
+@model IEnumerable<VirtualMuseum.Web.Models.ViewModels.VirtualTourStopListItemViewModel>
+
+@{
+    ViewData["Title"] = "Manage Route Stops";
+}
+
+<h1>Manage Route Stops</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<div class="mb-3">
+    <h4>@ViewBag.PlanTitle</h4>
+    <p><strong>Exhibition:</strong> @ViewBag.ExhibitionTitle</p>
+</div>
+
+<p>
+    <a asp-action="CreateStop" asp-route-planId="@ViewBag.PlanId" class="btn btn-primary">Add New Stop</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to Plans</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Step</th>
+            <th>Room ID</th>
+            <th>Room Name</th>
+            <th>Stop Title</th>
+            <th>Estimated Minutes</th>
+            <th style="width: 220px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var stop in Model)
+        {
+            <tr>
+                <td>@stop.StepNo</td>
+                <td>@stop.RoomId</td>
+                <td>@stop.RoomName</td>
+                <td>@stop.StopTitle</td>
+                <td>@stop.EstimatedMinutes</td>
+                <td>
+                    <a asp-action="EditStop" asp-route-id="@stop.StopId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="DeleteStop" asp-route-id="@stop.StopId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
