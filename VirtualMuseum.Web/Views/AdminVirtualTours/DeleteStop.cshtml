@@ -1,0 +1,27 @@
+@model VirtualMuseum.Web.Models.ViewModels.VirtualTourStopDeleteViewModel
+
+@{
+    ViewData["Title"] = "Delete Route Stop";
+}
+
+<h1>Delete Route Stop</h1>
+
+<div class="alert alert-danger">
+    <strong>Warning:</strong> This route stop will be deleted from the plan.
+</div>
+
+<table class="table table-bordered">
+    <tr><th>Plan</th><td>@Model.PlanTitle</td></tr>
+    <tr><th>Exhibition</th><td>@Model.ExhibitionTitle</td></tr>
+    <tr><th>Step</th><td>@Model.StepNo</td></tr>
+    <tr><th>Room ID</th><td>@Model.RoomId</td></tr>
+    <tr><th>Room Name</th><td>@Model.RoomName</td></tr>
+    <tr><th>Stop Title</th><td>@Model.StopTitle</td></tr>
+    <tr><th>Estimated Minutes</th><td>@Model.EstimatedMinutes</td></tr>
+</table>
+
+<form asp-action="DeleteStop" method="post">
+    <input asp-for="StopId" type="hidden" />
+    <button type="submit" class="btn btn-danger">Yes, Delete Stop</button>
+    <a asp-action="ManageStops" asp-route-id="@Model.PlanId" class="btn btn-secondary">Cancel</a>
+</form>
